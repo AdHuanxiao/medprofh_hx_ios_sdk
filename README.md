@@ -1,2 +1,0 @@
-# medprofh_hx_ios_sdk
-medprofh_hx_ios_sdk
