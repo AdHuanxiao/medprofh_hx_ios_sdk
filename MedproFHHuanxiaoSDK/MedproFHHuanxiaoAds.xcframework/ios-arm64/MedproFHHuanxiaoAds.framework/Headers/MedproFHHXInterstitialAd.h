@@ -1,0 +1,122 @@
+//
+//  MedproFHHXInterstitialAd.h
+//  MedproFHHuanxiaoAds
+//
+//  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
+//
+//  插屏广告
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <MedproFHHuanxiaoAds/MedproFHHXInterstitialAdDelegate.h>
+#import <MedproFHHuanxiaoAds/MedproFHHXBidNotifiable.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MedproFHHXInterstitialAd : NSObject <MedproFHHXBidNotifiable>
+
+#pragma mark - 属性
+
+/**
+ * @brief 广告位 ID
+ * @discussion 在 MedproFHHuanxiaoAds 开发者后台创建广告位后获取
+ */
+@property (nonatomic, copy, readonly) NSString *adSpotID;
+
+/**
+ * @brief 代理对象
+ * @discussion 用于接收广告生命周期回调
+ */
+@property (nonatomic, weak, nullable) id<MedproFHHXInterstitialAdDelegate> delegate;
+
+/**
+ * @brief 广告是否有效
+ * @discussion 加载成功且未过期时返回 YES
+ */
+@property (nonatomic, assign, readonly, getter=isAdValid) BOOL adValid;
+
+/**
+ * @brief 广告是否正在加载
+ */
+@property (nonatomic, assign, readonly, getter=isLoading) BOOL loading;
+
+/**
+ * @brief 广告 eCPM（单位：分/CPM）
+ * @discussion 加载成功后有效，返回 0 表示未获取到价格信息
+ */
+@property (nonatomic, assign, readonly) NSUInteger ecpm;
+
+#pragma mark - 初始化
+
+/**
+ * @brief 初始化插屏广告
+ *
+ * @param adSpotID 广告位 ID（必填）
+ *
+ * @return 插屏广告实例，adSpotID 为空时返回 nil
+ */
+- (nullable instancetype)initWithAdSpotID:(NSString *)adSpotID;
+
+/// 禁用默认初始化
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
+
+#pragma mark - 视频控制
+
+/**
+ * @brief 视频是否静音播放
+ *
+ * @discussion
+ * 设置视频广告的静音状态。
+ * 可在 loadAd 之前设置，广告加载后也可动态修改。
+ *
+ * @default NO（默认有声播放）
+ */
+@property (nonatomic, assign) BOOL videoMuted;
+
+/// 落地页弹出控制器，一般传当前 VC。落地页/App Store/合规页面从该控制器弹出；不设置或失效时自动探测顶层。
+/// 用 showFromViewController: 展示时未设置则默认用展示控制器。弱引用。
+@property (nonatomic, weak, nullable) UIViewController *landingPageRootViewController;
+
+#pragma mark - 广告操作
+
+/**
+ * @brief 加载广告
+ *
+ * @discussion
+ * 加载广告素材，加载成功后回调 interstitialAdDidLoad:
+ * 建议提前加载，在合适的时机展示
+ */
+- (void)loadAd;
+
+/**
+ * @brief 从指定视图控制器展示广告
+ *
+ * @param viewController 用于展示广告的视图控制器
+ *
+ * @discussion
+ * 在 interstitialAdDidLoad: 回调后调用
+ * 广告会以模态方式展示在 viewController 之上
+ */
+- (void)showFromViewController:(UIViewController *)viewController;
+
+/**
+ * @brief 在指定窗口展示广告
+ *
+ * @param window 用于展示广告的窗口
+ */
+- (void)showInWindow:(UIWindow *)window;
+
+/**
+ * @brief 关闭广告
+ *
+ * @discussion
+ * 主动关闭广告，会触发 interstitialAdWillClose: 和 interstitialAdDidClose: 回调
+ */
+- (void)close;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
