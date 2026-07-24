@@ -5,11 +5,11 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>zh_CN</string>
     <key>CFBundleIdentifier</key>
-    <string>com.huanxiao.ads.images</string>
+    <string>com.medprofh.huanxiao.ads.images</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>HXAdsImages</string>
+    <string>MedproFHHXAdsImages</string>
     <key>CFBundlePackageType</key>
     <string>BNDL</string>
     <key>CFBundleShortVersionString</key>
