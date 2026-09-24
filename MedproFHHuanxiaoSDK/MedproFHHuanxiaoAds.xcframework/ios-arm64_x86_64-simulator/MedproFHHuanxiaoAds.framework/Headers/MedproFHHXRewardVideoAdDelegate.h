@@ -1,6 +1,6 @@
 //
-//  MedproFHHXRewardVideoAdDelegate.h
-//  MedproFHHuanxiaoAds
+//  HXRewardVideoAdDelegate.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -11,10 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MedproFHHXRewardVideoAd;
+@class HXRewardVideoAd;
 
 /**
- * @protocol MedproFHHXRewardVideoAdDelegate
+ * @protocol HXRewardVideoAdDelegate
  * @brief 激励视频广告生命周期代理协议
  *
  * @discussion
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  * - 必须实现 rewardVideoAdDidReward: 方法来处理奖励发放
  * - 建议实现 rewardVideoAdDidClose: 方法，在广告关闭后恢复应用音频等
  */
-@protocol MedproFHHXRewardVideoAdDelegate <NSObject>
+@protocol HXRewardVideoAdDelegate <NSObject>
 
 @optional
 
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 广告素材加载完成，可以调用 showFromViewController: 展示广告。
  * 建议提前预加载，在用户需要时展示。
  */
-- (void)rewardVideoAdDidLoad:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidLoad:(HXRewardVideoAd *)rewardVideoAd;
 
 /**
  * @brief 广告加载失败
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param rewardVideoAd 激励视频广告实例
  * @param error 错误信息
  */
-- (void)rewardVideoAd:(MedproFHHXRewardVideoAd *)rewardVideoAd didFailWithError:(NSError *)error;
+- (void)rewardVideoAd:(HXRewardVideoAd *)rewardVideoAd didFailWithError:(NSError *)error;
 
 #pragma mark - 广告展示
 
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告视图即将展示，建议在此暂停应用音频
  */
-- (void)rewardVideoAdWillExpose:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdWillExpose:(HXRewardVideoAd *)rewardVideoAd;
 
 /**
  * @brief 广告曝光成功
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告已成功展示，SDK 会自动上报曝光
  */
-- (void)rewardVideoAdDidExpose:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidExpose:(HXRewardVideoAd *)rewardVideoAd;
 
 /**
  * @brief 广告展示失败
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param rewardVideoAd 激励视频广告实例
  * @param error 错误信息
  */
-- (void)rewardVideoAd:(MedproFHHXRewardVideoAd *)rewardVideoAd didFailToShowWithError:(NSError *)error;
+- (void)rewardVideoAd:(HXRewardVideoAd *)rewardVideoAd didFailToShowWithError:(NSError *)error;
 
 #pragma mark - 视频播放
 
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @param rewardVideoAd 激励视频广告实例
  */
-- (void)rewardVideoAdDidStartPlay:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidStartPlay:(HXRewardVideoAd *)rewardVideoAd;
 
 /**
  * @brief 视频播放进度更新
@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param currentTime 当前播放时间（秒）
  * @param totalTime 视频总时长（秒）
  */
-- (void)rewardVideoAd:(MedproFHHXRewardVideoAd *)rewardVideoAd
+- (void)rewardVideoAd:(HXRewardVideoAd *)rewardVideoAd
        playProgress:(CGFloat)progress
         currentTime:(NSTimeInterval)currentTime
           totalTime:(NSTimeInterval)totalTime;
@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 视频播放结束，即将展示结束页面
  */
-- (void)rewardVideoAdDidPlayFinish:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidPlayFinish:(HXRewardVideoAd *)rewardVideoAd;
 
 /**
  * @brief 视频播放失败
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param rewardVideoAd 激励视频广告实例
  * @param error 错误信息
  */
-- (void)rewardVideoAd:(MedproFHHXRewardVideoAd *)rewardVideoAd didPlayFailWithError:(NSError *)error;
+- (void)rewardVideoAd:(HXRewardVideoAd *)rewardVideoAd didPlayFailWithError:(NSError *)error;
 
 #pragma mark - 奖励发放
 
@@ -132,7 +132,7 @@ NS_ASSUME_NONNULL_BEGIN
  * - 此回调可能在视频播放完成前触发（当达到最小观看时长时）
  * - 建议使用服务端回调进行二次验证
  */
-- (void)rewardVideoAdDidReward:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidReward:(HXRewardVideoAd *)rewardVideoAd;
 
 #pragma mark - 广告交互
 
@@ -143,7 +143,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 用户点击了广告，SDK 会自动处理跳转和上报
  */
-- (void)rewardVideoAdDidClick:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidClick:(HXRewardVideoAd *)rewardVideoAd;
 
 /**
  * @brief 跳过按钮被点击
@@ -152,15 +152,15 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 用户点击了跳过按钮（仅在达到可跳过时间后可用）
  */
-- (void)rewardVideoAdDidClickSkip:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidClickSkip:(HXRewardVideoAd *)rewardVideoAd;
 
 #pragma mark - 应用内落地页
 
 /// 应用内落地页打开（点击广告后，落地页 / 合规页面 / App Store 内部展示等应用内二级页面打开时回调）
-- (void)rewardVideoAdDidOpenLandingPage:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidOpenLandingPage:(HXRewardVideoAd *)rewardVideoAd;
 
 /// 应用内落地页关闭（上述应用内二级页面关闭、返回广告时回调）
-- (void)rewardVideoAdDidCloseLandingPage:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidCloseLandingPage:(HXRewardVideoAd *)rewardVideoAd;
 
 #pragma mark - 广告关闭
 
@@ -171,7 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告视图即将从窗口移除
  */
-- (void)rewardVideoAdWillClose:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdWillClose:(HXRewardVideoAd *)rewardVideoAd;
 
 /**
  * @brief 广告已关闭
@@ -182,7 +182,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 广告视图已从窗口移除，可以恢复应用音频等。
  * 注意：此时奖励回调可能已经触发，也可能未触发（用户提前跳过）。
  */
-- (void)rewardVideoAdDidClose:(MedproFHHXRewardVideoAd *)rewardVideoAd;
+- (void)rewardVideoAdDidClose:(HXRewardVideoAd *)rewardVideoAd;
 
 @end
 

@@ -1,6 +1,6 @@
 //
-//  MedproFHHXSplashAdDelegate.h
-//  MedproFHHuanxiaoAds
+//  HXSplashAdDelegate.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -11,17 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MedproFHHXSplashAd;
+@class HXSplashAd;
 
 /**
- * @protocol MedproFHHXSplashAdDelegate
+ * @protocol HXSplashAdDelegate
  * @brief 开屏广告生命周期代理协议
  *
  * @discussion
  * 通过实现此协议的方法，可以监听开屏广告的各个生命周期事件。
  * 所有代理方法均在主线程回调。
  */
-@protocol MedproFHHXSplashAdDelegate <NSObject>
+@protocol HXSplashAdDelegate <NSObject>
 
 @optional
 
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告素材加载完成，可以调用 showInWindow: 展示广告
  */
-- (void)splashAdDidLoad:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdDidLoad:(HXSplashAd *)splashAd;
 
 /**
  * @brief 广告加载失败
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param splashAd 开屏广告实例
  * @param error 错误信息
  */
-- (void)splashAd:(MedproFHHXSplashAd *)splashAd didFailWithError:(NSError *)error;
+- (void)splashAd:(HXSplashAd *)splashAd didFailWithError:(NSError *)error;
 
 #pragma mark - 广告展示
 
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告视图即将添加到窗口
  */
-- (void)splashAdWillExpose:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdWillExpose:(HXSplashAd *)splashAd;
 
 /**
  * @brief 广告曝光成功
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告已成功展示，SDK 会自动上报曝光
  */
-- (void)splashAdDidExpose:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdDidExpose:(HXSplashAd *)splashAd;
 
 /**
  * @brief 广告展示失败
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param splashAd 开屏广告实例
  * @param error 错误信息
  */
-- (void)splashAd:(MedproFHHXSplashAd *)splashAd didFailToShowWithError:(NSError *)error;
+- (void)splashAd:(HXSplashAd *)splashAd didFailToShowWithError:(NSError *)error;
 
 #pragma mark - 广告交互
 
@@ -81,22 +81,22 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 用户点击了广告，SDK 会自动处理跳转和上报
  */
-- (void)splashAdDidClick:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdDidClick:(HXSplashAd *)splashAd;
 
 /**
  * @brief 广告跳过按钮被点击
  *
  * @param splashAd 开屏广告实例
  */
-- (void)splashAdDidClickSkip:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdDidClickSkip:(HXSplashAd *)splashAd;
 
 #pragma mark - 应用内落地页
 
 /// 应用内落地页打开（点击广告后，落地页 / 合规页面 / App Store 内部展示等应用内二级页面打开时回调）
-- (void)splashAdDidOpenLandingPage:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdDidOpenLandingPage:(HXSplashAd *)splashAd;
 
 /// 应用内落地页关闭（上述应用内二级页面关闭、返回开屏时回调）
-- (void)splashAdDidCloseLandingPage:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdDidCloseLandingPage:(HXSplashAd *)splashAd;
 
 #pragma mark - 广告关闭
 
@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告视图即将从窗口移除
  */
-- (void)splashAdWillClose:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdWillClose:(HXSplashAd *)splashAd;
 
 /**
  * @brief 广告已关闭
@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 广告视图已从窗口移除，可以进入主界面
  */
-- (void)splashAdDidClose:(MedproFHHXSplashAd *)splashAd;
+- (void)splashAdDidClose:(HXSplashAd *)splashAd;
 
 @end
 

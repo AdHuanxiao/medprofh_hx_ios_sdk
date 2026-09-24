@@ -1,6 +1,6 @@
 //
-//  MedproFHHXRewardVideoAd.h
-//  MedproFHHuanxiaoAds
+//  HXRewardVideoAd.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -9,18 +9,23 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MedproFHHuanxiaoAds/MedproFHHXAdMaterialInfo.h>
 #import <MedproFHHuanxiaoAds/MedproFHHXRewardVideoAdDelegate.h>
 #import <MedproFHHuanxiaoAds/MedproFHHXBidNotifiable.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MedproFHHXRewardVideoAd : NSObject <MedproFHHXBidNotifiable>
+@interface HXRewardVideoAd : NSObject <HXBidNotifiable>
+
+/// 加载成功后可读取的素材快照；加载前及本轮加载失败时为 nil。
+/// 被拒绝的重复加载、广告关闭或过期不会清除已成功加载的快照。
+@property (atomic, strong, readonly, nullable) HXAdMaterialInfo *materialInfo;
 
 #pragma mark - 属性
 
 /**
  * @brief 广告位 ID
- * @discussion 在 MedproFHHuanxiaoAds 开发者后台创建广告位后获取
+ * @discussion 在 HuanxiaoAds 开发者后台创建广告位后获取
  */
 @property (nonatomic, copy, readonly) NSString *adSpotID;
 
@@ -28,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @brief 代理对象
  * @discussion 用于接收广告生命周期回调
  */
-@property (nonatomic, weak, nullable) id<MedproFHHXRewardVideoAdDelegate> delegate;
+@property (nonatomic, weak, nullable) id<HXRewardVideoAdDelegate> delegate;
 
 /**
  * @brief 广告是否有效
@@ -85,8 +90,10 @@ NS_ASSUME_NONNULL_BEGIN
  * @brief 加载广告
  *
  * @discussion
- * 加载广告素材（包括视频下载）。
+ * 加载广告数据及封面等必要展示资源；视频内容在展示时由系统播放器按需缓冲。
  * 加载成功后回调 rewardVideoAdDidLoad:，可以展示广告。
+ * 同一实例可在上一轮加载失败，或上一轮广告关闭后再次调用 loadAd 刷新广告；
+ * 上一轮仍在加载、等待展示或展示时的重复调用会被忽略。
  *
  * @note 建议在用户可能需要观看广告前提前加载
  */
@@ -103,6 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @note
  * - 展示前请检查 isAdValid 确保广告有效
+ * - 每次加载成功的广告只允许展示一次，重复调用会回调展示失败
  * - 展示广告时建议暂停应用音频
  */
 - (void)showFromViewController:(UIViewController *)viewController;

@@ -1,6 +1,6 @@
 //
-//  MedproFHHXAdsConfig.h
-//  MedproFHHuanxiaoAds
+//  HXAdsConfig.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -14,7 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface MedproFHHXAdsConfig : NSObject <NSCopying>
+@interface HXAdsConfig : NSObject <NSCopying>
 
 #pragma mark - 必填参数
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @brief 应用 ID（必填）
  *
  * @discussion
- * 在 MedproFHHuanxiaoAds 开发者后台创建应用后获取。
+ * 在 HuanxiaoAds 开发者后台创建应用后获取。
  * 每个应用对应唯一的 AppID，用于标识您的应用。
  */
 @property (nonatomic, copy, readonly) NSString *appID;
@@ -34,11 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion
  * 用于配置个性化广告、摇一摇、IDFA 等隐私相关设置。
- * 默认使用 `[MedproFHHXPrivacyConfig defaultConfig]` 创建。
+ * 默认使用 `[HXPrivacyConfig defaultConfig]` 创建。
  *
- * @see MedproFHHXPrivacyConfig
+ * @see HXPrivacyConfig
  */
-@property (nonatomic, strong) MedproFHHXPrivacyConfig *privacyConfig;
+@property (nonatomic, strong) HXPrivacyConfig *privacyConfig;
 
 /**
  * @brief 测试模式开关
@@ -58,11 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion
  * 控制日志输出的详细程度。仅在 DEBUG 模式下有效。
  *
- * @default MedproFHHXAdsLogLevelWarning
+ * @default HXAdsLogLevelWarning
  *
- * @see MedproFHHXAdsLogLevel
+ * @see HXAdsLogLevel
  */
-@property (nonatomic, assign) MedproFHHXAdsLogLevel logLevel;
+@property (nonatomic, assign) HXAdsLogLevel logLevel;
 
 #pragma mark - 初始化
 
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @return 配置对象实例，如果 appID 为空则返回 nil
  *
  * @code
- * MedproFHHXAdsConfig *config = [[MedproFHHXAdsConfig alloc] initWithAppID:@"YOUR_APP_ID"];
+ * HXAdsConfig *config = [[HXAdsConfig alloc] initWithAppID:@"YOUR_APP_ID"];
  * @endcode
  */
 - (nullable instancetype)initWithAppID:(NSString *)appID;

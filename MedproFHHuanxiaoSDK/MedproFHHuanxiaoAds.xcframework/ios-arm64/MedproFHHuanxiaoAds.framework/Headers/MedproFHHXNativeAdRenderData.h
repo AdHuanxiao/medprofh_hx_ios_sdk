@@ -1,6 +1,6 @@
 //
-//  MedproFHHXNativeAdRenderData.h
-//  MedproFHHuanxiaoAds
+//  HXNativeAdRenderData.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -10,14 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class MedproFHHXMediaView;
-@class MedproFHHXInteractionContainerView;
-@protocol MedproFHHXNativeAdCustomVideoDelegate;
+@class HXMediaView;
+@class HXInteractionContainerView;
+@protocol HXNativeAdCustomVideoDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// 自渲染广告的应用信息。下载类广告应使用这些字段展示应用合规信息。
-@interface MedproFHHXNativeAdAppInfo : NSObject
+@interface HXNativeAdAppInfo : NSObject
 
 /// 应用名称
 @property (nonatomic, copy, readonly, nullable) NSString *name;
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface MedproFHHXNativeAdRenderData : NSObject
+@interface HXNativeAdRenderData : NSObject
 
 //  按钮文字
 @property (nonatomic, copy, readonly) NSString *ctaText;
@@ -66,13 +66,14 @@ NS_ASSUME_NONNULL_BEGIN
 //  广告素材高
 @property (nonatomic, assign, readonly) NSInteger height;
 //  由于广告法规定，必须添加广告标识（建议：广告标识放置在广告的左下角，logo放置在广告的右下角）
-//  广告标识图片
+/// 完整广告标识图片（已经包含所需文字）。优先显示；不要再叠加 adLabel。
+/// 服务端隐藏 Logo 或图片缺失时返回仅含“广告”的图片。
 @property (nonatomic, strong, readonly, nullable) UIImage *adLabelImage;
-//  广告标识文字
+/// adLabelImage 无法生成时的文字兜底，与 adLabelImage 二选一。
 @property (nonatomic, copy, readonly) NSString *adLabel;
-//  logo图片
+/// 按构建配置返回的原始角标图；和 logoLabel 配合显示。服务端隐藏 Logo 时为 nil。
 @property (nonatomic, strong, readonly, nullable) UIImage *logoImage;
-//  logo文字
+/// 完整图片模式成功时为空字符串；纯 Logo 模式或没有图片时为“广告”。
 @property (nonatomic, copy, readonly, nullable) NSString *logoLabel;
 //  广告图标URL
 @property (nonatomic, copy, readonly, nullable) NSString *iconUrl;
@@ -81,14 +82,14 @@ NS_ASSUME_NONNULL_BEGIN
 //  应用图标URL
 @property (nonatomic, copy, readonly, nullable) NSString *appIconUrl;
 /// 应用信息。下载类广告应按监管要求展示相应信息。
-@property (nonatomic, strong, readonly, nullable) MedproFHHXNativeAdAppInfo *appInfo;
+@property (nonatomic, strong, readonly, nullable) HXNativeAdAppInfo *appInfo;
 
 /**
  * 交互容器视图（摇一摇/扭一扭/滑动），媒体可在容器内 addSubview 添加自定义内容。
  * 将容器添加到广告视图层级后，调用 bindWithContainer:clickableViews: 时 SDK 自动启动交互监测。
  * 容器 width/height 建议 1:1，如 55x55
  */
-@property (nonatomic, strong, readonly, nullable) MedproFHHXInteractionContainerView *interactionContainerView;
+@property (nonatomic, strong, readonly, nullable) HXInteractionContainerView *interactionContainerView;
 
 //  摇一摇的 UIImageView 视图（已废弃，请使用 interactionContainerView 替代）
 @property (nonatomic, strong, readonly, nullable) UIImageView *shakeAnimationView
@@ -100,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isDownloadAd;
 //  视频播放视图，isVideoAd=YES 时有值。
 //  videoRenderMode 设为 Custom 时为 nil，请用下方 videoUrl 等字段自行播放
-@property (nonatomic, strong, readonly, nullable) MedproFHHXMediaView *mediaView;
+@property (nonatomic, strong, readonly, nullable) HXMediaView *mediaView;
 
 #pragma mark - 视频素材（isVideoAd=YES 时有值，自定义视频模式使用）
 
@@ -130,7 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bindWithContainer:(UIView *)containerView
            clickableViews:(NSArray *)clickableViews
           customVideoView:(nullable UIView *)customVideoView
-            videoDelegate:(nullable id<MedproFHHXNativeAdCustomVideoDelegate>)videoDelegate;
+            videoDelegate:(nullable id<HXNativeAdCustomVideoDelegate>)videoDelegate;
 
 /// 添加关闭视图（该视图点击，可以关闭广告）
 - (void)addCloseTarget:(UIView *)targetView;

@@ -1,6 +1,6 @@
 //
-//  MedproFHHXInteractionContainerView.h
-//  MedproFHHuanxiaoAds
+//  HXInteractionContainerView.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -16,19 +16,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * @brief 交互容器的交互类型
  */
-typedef NS_ENUM(NSUInteger, MedproFHHXInteractionType) {
+typedef NS_ENUM(NSUInteger, HXInteractionType) {
     /// 无交互（默认）
-    MedproFHHXInteractionTypeNone   = 0,
+    HXInteractionTypeNone   = 0,
     /// 摇一摇
-    MedproFHHXInteractionTypeShake  = 1,
+    HXInteractionTypeShake  = 1,
     /// 扭一扭
-    MedproFHHXInteractionTypeTwist  = 2,
+    HXInteractionTypeTwist  = 2,
     /// 滑动
-    MedproFHHXInteractionTypeSwipe  = 3,
+    HXInteractionTypeSwipe  = 3,
 };
 
 /**
- * @class MedproFHHXInteractionContainerView
+ * @class HXInteractionContainerView
  * @brief 自渲染广告交互容器视图
  *
  * @discussion
@@ -36,17 +36,17 @@ typedef NS_ENUM(NSUInteger, MedproFHHXInteractionType) {
  * 媒体开发者可通过 addSubview 在容器中添加自定义内容。
  *
  * 使用流程：
- * 1. 从 MedproFHHXNativeAdRenderData.interactionContainerView 获取容器
+ * 1. 从 HXNativeAdRenderData.interactionContainerView 获取容器
  * 2. 可选：隐藏 defaultAnimationView，添加自定义子视图（如自定义图标、文案等）
  * 3. 将容器添加到广告视图层级并设置布局约束
  * 4. 调用 bindWithContainer:clickableViews: 后，SDK 自动启动交互监测和动画
  *
  * @note 容器的 width/height 为 1:1 时效果最佳
  */
-@interface MedproFHHXInteractionContainerView : UIView
+@interface HXInteractionContainerView : UIView
 
 /// 交互类型（摇一摇/扭一扭/滑动）
-@property (nonatomic, assign, readonly) MedproFHHXInteractionType interactionType;
+@property (nonatomic, assign, readonly) HXInteractionType interactionType;
 
 /// SDK 提供的默认动画指示视图（如摇一摇手机图标）
 @property (nonatomic, strong, readonly, nullable) UIView *defaultAnimationView;

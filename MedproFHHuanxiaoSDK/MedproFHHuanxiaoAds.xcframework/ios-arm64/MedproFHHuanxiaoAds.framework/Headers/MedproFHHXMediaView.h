@@ -1,6 +1,6 @@
 //
-//  MedproFHHXMediaView.h
-//  MedproFHHuanxiaoAds
+//  HXMediaView.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -11,18 +11,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, MedproFHHXVideoShowModel) {
-    MedproFHHXVideoShowModelResize,         // 拉伸填充
-    MedproFHHXVideoShowModelResizeAspect,   // 保持比例（可能有黑边）
-    MedproFHHXVideoShowModelResizeFill,     // 保持比例填充（可能裁切）
+typedef NS_ENUM(NSUInteger, HXVideoShowModel) {
+    HXVideoShowModelResize,         // 拉伸填充
+    HXVideoShowModelResizeAspect,   // 保持比例（可能有黑边）
+    HXVideoShowModelResizeFill,     // 保持比例填充（可能裁切）
 };
 
-@protocol MedproFHHXMediaViewDelegate;
+@protocol HXMediaViewDelegate;
 
-@interface MedproFHHXMediaView : UIView
+@interface HXMediaView : UIView
 
-//  视频的显示模式，默认 MedproFHHXVideoShowModelResizeAspect
-@property (nonatomic, assign) MedproFHHXVideoShowModel showModel;
+//  视频的显示模式，默认 HXVideoShowModelResizeAspect
+@property (nonatomic, assign) HXVideoShowModel showModel;
 //  声音控制视图，外部可以改变 frame。width / height = 1:1
 @property (nonatomic, strong, readonly) UIView *voiceControlView;
 //  控制视频的音量控制按钮是否展示（默认不展示）
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, MedproFHHXVideoShowModel) {
 //  是否静音了
 @property (nonatomic, assign, readonly) BOOL isMuted;
 //  代理
-@property (nonatomic, weak, nullable) id<MedproFHHXMediaViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<HXMediaViewDelegate> delegate;
 
 //  恢复播放
 - (void)resume;
@@ -47,22 +47,22 @@ typedef NS_ENUM(NSUInteger, MedproFHHXVideoShowModel) {
 
 @end
 
-@protocol MedproFHHXMediaViewDelegate <NSObject>
+@protocol HXMediaViewDelegate <NSObject>
 
 @optional
 
 //  准备播放
-- (void)hxMediaReady:(MedproFHHXMediaView *)mediaView;
+- (void)hxMediaReady:(HXMediaView *)mediaView;
 //  开始播放
-- (void)hxMediaStart:(MedproFHHXMediaView *)mediaView;
+- (void)hxMediaStart:(HXMediaView *)mediaView;
 //  暂停播放
-- (void)hxMediaPause:(MedproFHHXMediaView *)mediaView;
+- (void)hxMediaPause:(HXMediaView *)mediaView;
 //  恢复播放
-- (void)hxMediaResume:(MedproFHHXMediaView *)mediaView;
+- (void)hxMediaResume:(HXMediaView *)mediaView;
 //  播放错误
-- (void)hxMediaError:(MedproFHHXMediaView *)mediaView error:(NSError *)error;
+- (void)hxMediaError:(HXMediaView *)mediaView error:(NSError *)error;
 //  播放完成
-- (void)hxMediaCompleted:(MedproFHHXMediaView *)mediaView;
+- (void)hxMediaCompleted:(HXMediaView *)mediaView;
 
 @end
 

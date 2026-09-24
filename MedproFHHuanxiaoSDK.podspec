@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'MedproFHHuanxiaoSDK'
-  spec.version          = '1.5.11'
+  spec.version          = '1.6.0'
   spec.summary          = 'MedproFHHuanxiaoSDK for iOS'
   spec.description      = <<-DESC
                           MedproFHHuanxiaoSDK

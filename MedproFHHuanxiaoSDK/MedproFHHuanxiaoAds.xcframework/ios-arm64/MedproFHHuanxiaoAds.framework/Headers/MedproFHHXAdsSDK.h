@@ -1,6 +1,6 @@
 //
-//  MedproFHHXAdsSDK.h
-//  MedproFHHuanxiaoAds
+//  HXAdsSDK.h
+//  HuanxiaoAds
 //
 //  Copyright © 2026 Huanxiao Technology Co., Ltd. All rights reserved.
 //
@@ -15,7 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface MedproFHHXAdsSDK : NSObject
+@interface HXAdsSDK : NSObject
 
 #pragma mark - 单例
 
@@ -34,15 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * @brief 当前 SDK 配置
  * @discussion 初始化成功后可读取，未初始化时为 nil。SDK 在初始化开始时复制配置，
- * 后续修改调用方原始 MedproFHHXAdsConfig 对象不会改变 SDK 内部配置。
+ * 后续修改调用方原始 HXAdsConfig 对象不会改变 SDK 内部配置。
  */
-@property (nonatomic, strong, readonly, nullable) MedproFHHXAdsConfig *currentConfig;
+@property (nonatomic, strong, readonly, nullable) HXAdsConfig *currentConfig;
 
 /**
  * @brief SDK 初始化状态
- * @see MedproFHHXAdsInitializationStatus
+ * @see HXAdsInitializationStatus
  */
-@property (nonatomic, assign, readonly) MedproFHHXAdsInitializationStatus initializationStatus;
+@property (nonatomic, assign, readonly) HXAdsInitializationStatus initializationStatus;
 
 /**
  * @brief 是否已成功初始化
@@ -67,10 +67,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion
  * 方法会在当前线程等待初始化网络请求完成后返回，可直接在主线程调用。
- * 使用默认配置，等同于使用默认 MedproFHHXAdsConfig 调用 initializeWithConfig:
+ * 使用默认配置，等同于使用默认 HXAdsConfig 调用 initializeWithConfig:
  * 方法返回后可通过 @c isInitialized 判断是否成功。
  * 内部逻辑（网络重试等）与异步版本完全一致。
- * iOS 12 上会立即安全返回，@c isInitialized 保持为 NO，不会启动 SDK 业务流程。
+ * iOS 10～12 上会立即安全返回，@c isInitialized 保持为 NO，不会启动 SDK 业务流程。
  */
 - (void)initializeWithAppID:(NSString *)appID;
 
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @warning AppID 为必填项，为空时初始化将失败并记录错误日志
  */
-- (void)initializeWithConfig:(MedproFHHXAdsConfig *)config;
+- (void)initializeWithConfig:(HXAdsConfig *)config;
 
 #pragma mark - 异步初始化
 
@@ -101,10 +101,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion
  * 使用默认配置初始化 SDK，适用于不需要自定义配置的场景。
- * 等同于使用默认 MedproFHHXAdsConfig 调用 initializeWithConfig:completion:
+ * 等同于使用默认 HXAdsConfig 调用 initializeWithConfig:completion:
  */
 - (void)initializeWithAppID:(NSString *)appID
-                 completion:(nullable MedproFHHXAdsInitializationCompletionHandler)completion;
+                 completion:(nullable HXAdsInitializationCompletionHandler)completion;
 
 /**
  * @brief 异步初始化 SDK
@@ -119,12 +119,12 @@ NS_ASSUME_NONNULL_BEGIN
  * - 建议在应用启动时（如 AppDelegate 的 didFinishLaunching）调用
  * - 重复调用时，如果已初始化成功则直接返回成功
  * - 初始化过程中会进行网络请求，请确保网络可用
- * - iOS 12 上会立即回调失败，错误码为 @c MedproFHHXAdsErrorCodeUnsupportedOS，不会启动 SDK 业务流程
+ * - iOS 10～12 上会立即回调失败，错误码为 @c HXAdsErrorCodeUnsupportedOS，不会启动 SDK 业务流程
  *
  * @warning AppID 为必填项，为空时将返回错误
  */
-- (void)initializeWithConfig:(MedproFHHXAdsConfig *)config
-                  completion:(nullable MedproFHHXAdsInitializationCompletionHandler)completion;
+- (void)initializeWithConfig:(HXAdsConfig *)config
+                  completion:(nullable HXAdsInitializationCompletionHandler)completion;
 
 
 #pragma mark - 就绪队列
@@ -137,10 +137,10 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion
  * 根据当前 SDK 状态有三种行为：
- * - @c MedproFHHXAdsInitializationStatusReady：立即在主线程执行 block(nil)
- * - @c MedproFHHXAdsInitializationStatusPending / @c MedproFHHXAdsInitializationStatusInitializing：
+ * - @c HXAdsInitializationStatusReady：立即在主线程执行 block(nil)
+ * - @c HXAdsInitializationStatusPending / @c HXAdsInitializationStatusInitializing：
  *   任务入队等待，初始化成功后按入队顺序执行；超时则回调 error
- * - @c MedproFHHXAdsInitializationStatusFailed / @c MedproFHHXAdsInitializationStatusNotStarted：
+ * - @c HXAdsInitializationStatusFailed / @c HXAdsInitializationStatusNotStarted：
  *   立即回调 error（不可恢复的失败状态，或未调用初始化）
  *
  * @note SDK 内部各广告类型在 loadAd 时自动使用此队列，媒体开发者一般无需直接调用。
@@ -208,7 +208,7 @@ NS_ASSUME_NONNULL_BEGIN
  *     [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
  *         if (status == ATTrackingManagerAuthorizationStatusAuthorized) {
  *             NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
- *             [[MedproFHHXAdsSDK sharedInstance] setIDFA:idfa];
+ *             [[HXAdsSDK sharedInstance] setIDFA:idfa];
  *         }
  *     }];
  * }
@@ -231,7 +231,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion
  * 如果媒体已自行获取 IDFV，可通过此方法传入。媒体手动传入的值优先于
- * SDK 自动获取的值，并且不受 MedproFHHXPrivacyConfig.idfvEnabled 开关影响。
+ * SDK 自动获取的值，并且不受 HXPrivacyConfig.idfvEnabled 开关影响。
  * 非 UUID 或全零 UUID 会被忽略，且不会覆盖当前有效值。
  *
  * @note 必须在 SDK 初始化成功后调用，否则设置无效
@@ -254,9 +254,9 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion
  * 仅在 DEBUG 模式下有效，Release 版本不会输出任何日志。
  *
- * @see MedproFHHXAdsLogLevel
+ * @see HXAdsLogLevel
  */
-- (void)setLogLevel:(MedproFHHXAdsLogLevel)logLevel;
+- (void)setLogLevel:(HXAdsLogLevel)logLevel;
 
 @end
 
