@@ -1,6 +1,5 @@
 framework module MedproFHHuanxiaoAds {
   umbrella header "MedproFHHuanxiaoAds.h"
   export *
-
   module * { export * }
 }

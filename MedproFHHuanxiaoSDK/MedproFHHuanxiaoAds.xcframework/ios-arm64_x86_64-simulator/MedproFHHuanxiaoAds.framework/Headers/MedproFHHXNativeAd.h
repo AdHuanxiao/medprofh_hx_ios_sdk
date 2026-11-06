@@ -22,14 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * @brief 信息流广告渲染模式
  */
-typedef NS_ENUM(NSInteger, HXNativeAdRenderMode) {
+typedef NS_ENUM(NSInteger, MedproFHHXNativeAdRenderMode) {
     /// 模板渲染（SDK 渲染 UI，默认）
     /// 使用 adView 获取 SDK 渲染好的广告视图
-    HXNativeAdRenderModeTemplate = 0,
+    MedproFHHXNativeAdRenderModeTemplate = 0,
     
     /// 自渲染（媒体渲染 UI）
     /// 使用 renderData 获取数据，自行创建视图后调用 renderData 的绑定方法
-    HXNativeAdRenderModeCustom = 1,
+    MedproFHHXNativeAdRenderModeCustom = 1,
 };
 
 /**
@@ -37,16 +37,16 @@ typedef NS_ENUM(NSInteger, HXNativeAdRenderMode) {
  *
  * @discussion 仅 renderMode = HXNativeAdRenderModeCustom 时有效
  */
-typedef NS_ENUM(NSInteger, HXNativeVideoRenderMode) {
+typedef NS_ENUM(NSInteger, MedproFHHXNativeVideoRenderMode) {
     /// SDK 提供播放视图（默认），取 renderData.mediaView 使用
-    HXNativeVideoRenderModeSDK = 0,
+    MedproFHHXNativeVideoRenderModeSDK = 0,
     
     /// 开发者自行提供播放器，renderData.mediaView 为 nil，
     /// 视频素材见 renderData 的 videoUrl / videoCoverUrl / videoDuration / videoSize
-    HXNativeVideoRenderModeCustom = 1,
+    MedproFHHXNativeVideoRenderModeCustom = 1,
 };
 
-@class HXNativeAd;
+@class MedproFHHXNativeAd;
 
 #pragma mark - 自定义视频
 
@@ -58,32 +58,32 @@ typedef NS_ENUM(NSInteger, HXNativeVideoRenderMode) {
  * 广告滑出屏幕、App 切后台、用户点击跳转等场景下 SDK 会回调暂停/恢复，
  * 请在回调里操作自己的播放器。回调均在主线程。
  */
-@protocol HXNativeAdCustomVideoDelegate <NSObject>
+@protocol MedproFHHXNativeAdCustomVideoDelegate <NSObject>
 
 @required
 
 /// 恢复播放（广告重新可见、App 回前台、跳转页关闭等）
-- (void)nativeAdRequestResumeVideo:(HXNativeAd *)nativeAd;
+- (void)nativeAdRequestResumeVideo:(MedproFHHXNativeAd *)nativeAd;
 
 /// 暂停播放（广告不可见、App 进后台、用户跳转等）
-- (void)nativeAdRequestPauseVideo:(HXNativeAd *)nativeAd;
+- (void)nativeAdRequestPauseVideo:(MedproFHHXNativeAd *)nativeAd;
 
 @optional
 
 /// 设置静音，nativeAd.videoMuted 变化时回调。
 /// enableDefaultAudioSessionSetting 为 YES 时，取消静音前 SDK 会先配置 AVAudioSession，媒体只需同步 player.muted。
-- (void)nativeAd:(HXNativeAd *)nativeAd requestMuteVideo:(BOOL)muted;
+- (void)nativeAd:(MedproFHHXNativeAd *)nativeAd requestMuteVideo:(BOOL)muted;
 
 /// 停止播放并释放资源，广告 close 时回调，之后不会再有恢复回调
-- (void)nativeAdRequestStopVideo:(HXNativeAd *)nativeAd;
+- (void)nativeAdRequestStopVideo:(MedproFHHXNativeAd *)nativeAd;
 
 @end
 
-@interface HXNativeAd : NSObject <HXBidNotifiable>
+@interface MedproFHHXNativeAd : NSObject <MedproFHHXBidNotifiable>
 
 /// 加载成功后可读取的素材快照；加载前及本轮加载失败时为 nil。
 /// 被拒绝的重复加载、广告关闭或过期不会清除已成功加载的快照。
-@property (atomic, strong, readonly, nullable) HXAdMaterialInfo *materialInfo;
+@property (atomic, strong, readonly, nullable) MedproFHHXAdMaterialInfo *materialInfo;
 
 #pragma mark - 属性
 
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger, HXNativeVideoRenderMode) {
  * @brief 代理对象
  * @discussion 用于接收广告生命周期回调
  */
-@property (nonatomic, weak, nullable) id<HXNativeAdDelegate> delegate;
+@property (nonatomic, weak, nullable) id<MedproFHHXNativeAdDelegate> delegate;
 
 /**
  * @brief 广告是否有效
@@ -131,7 +131,7 @@ typedef NS_ENUM(NSInteger, HXNativeVideoRenderMode) {
  * - HXNativeAdRenderModeCustom：媒体自渲染，通过 renderData 获取数据
  * 媒体不能指定模式，须在 nativeAdDidLoad: 中按实际结果处理。
  */
-@property (nonatomic, assign, readonly) HXNativeAdRenderMode renderMode;
+@property (nonatomic, assign, readonly) MedproFHHXNativeAdRenderMode renderMode;
 
 /**
  * @brief 视频渲染方式（仅自渲染模式有效）
@@ -141,7 +141,7 @@ typedef NS_ENUM(NSInteger, HXNativeVideoRenderMode) {
  * 设为 Custom 时自行播放视频，绑定时使用
  * bindWithContainer:clickableViews:customVideoView:videoDelegate:
  */
-@property (nonatomic, assign) HXNativeVideoRenderMode videoRenderMode;
+@property (nonatomic, assign) MedproFHHXNativeVideoRenderMode videoRenderMode;
 
 /// 落地页弹出控制器，一般传当前 VC。落地页/App Store/合规页面从该控制器弹出；不设置或失效时自动探测顶层。
 /// 不设置时优先使用广告容器所在控制器。弱引用。
@@ -249,7 +249,7 @@ typedef NS_ENUM(NSInteger, HXNativeVideoRenderMode) {
  * - 视频信息（如果是视频广告）
  *
  */
-@property (nonatomic, strong, readonly, nullable) HXNativeAdRenderData *renderData;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXNativeAdRenderData *renderData;
 
 
 /**

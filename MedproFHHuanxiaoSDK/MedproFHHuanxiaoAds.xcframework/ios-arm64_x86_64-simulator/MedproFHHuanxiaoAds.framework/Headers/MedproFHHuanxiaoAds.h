@@ -8,10 +8,10 @@
 #import <Foundation/Foundation.h>
 
 //! SDK 版本号 (数值)
-FOUNDATION_EXPORT double HuanxiaoAdsVersionNumber;
+FOUNDATION_EXPORT double MedproFHHuanxiaoAdsVersionNumber;
 
 //! SDK 版本号 (字符串)
-FOUNDATION_EXPORT const unsigned char HuanxiaoAdsVersionString[];
+FOUNDATION_EXPORT const unsigned char MedproFHHuanxiaoAdsVersionString[];
 
 #pragma mark - 核心模块
 

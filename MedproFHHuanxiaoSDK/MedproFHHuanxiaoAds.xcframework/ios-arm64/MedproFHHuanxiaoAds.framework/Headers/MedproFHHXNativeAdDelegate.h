@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class HXNativeAd;
+@class MedproFHHXNativeAd;
 
 /**
  * @protocol HXNativeAdDelegate
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 通过实现此协议的方法，可以监听信息流广告的各个生命周期事件。
  * 所有代理方法均在主线程回调。
  */
-@protocol HXNativeAdDelegate <NSObject>
+@protocol MedproFHHXNativeAdDelegate <NSObject>
 
 @optional
 
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 广告素材加载完成，可以获取 adView 并添加到容器中展示。
  * SDK 已根据 adTemp 模板渲染好广告视图。
  */
-- (void)nativeAdDidLoad:(HXNativeAd *)nativeAd;
+- (void)nativeAdDidLoad:(MedproFHHXNativeAd *)nativeAd;
 
 /**
  * @brief 广告加载失败
@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param nativeAd 信息流广告实例
  * @param error 错误信息
  */
-- (void)nativeAd:(HXNativeAd *)nativeAd didFailWithError:(NSError *)error;
+- (void)nativeAd:(MedproFHHXNativeAd *)nativeAd didFailWithError:(NSError *)error;
 
 #pragma mark - 广告展示
 
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 广告视图可见面积超过 50% 且持续超过 exposureDurationThreshold（默认 0.3 秒）后触发。
  * SDK 会自动上报曝光。
  */
-- (void)nativeAdDidExpose:(HXNativeAd *)nativeAd;
+- (void)nativeAdDidExpose:(MedproFHHXNativeAd *)nativeAd;
 
 #pragma mark - 广告交互
 
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 用户点击了广告，SDK 会自动处理跳转和上报
  */
-- (void)nativeAdDidClick:(HXNativeAd *)nativeAd;
+- (void)nativeAdDidClick:(MedproFHHXNativeAd *)nativeAd;
 
 /**
  * @brief 关闭按钮被点击
@@ -77,16 +77,16 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @discussion 用户点击了关闭按钮，开发者应移除广告视图
  */
-- (void)nativeAdDidClose:(HXNativeAd *)nativeAd;
+- (void)nativeAdDidClose:(MedproFHHXNativeAd *)nativeAd;
 
 #pragma mark - 应用内落地页
 
 /// 应用内落地页打开（点击广告后，落地页 / 合规页面 / App Store 内部展示等应用内二级页面打开时回调）
 /// 多广告同列表时，仅触发点击的那条广告会回调
-- (void)nativeAdDidOpenLandingPage:(HXNativeAd *)nativeAd;
+- (void)nativeAdDidOpenLandingPage:(MedproFHHXNativeAd *)nativeAd;
 
 /// 应用内落地页关闭（上述应用内二级页面关闭、返回广告时回调）
-- (void)nativeAdDidCloseLandingPage:(HXNativeAd *)nativeAd;
+- (void)nativeAdDidCloseLandingPage:(MedproFHHXNativeAd *)nativeAd;
 
 #pragma mark - 尺寸计算
 
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 当初始化时传入的 size.height == 0 时，SDK 会根据模板类型自动计算推荐高度：
  * 开发者收到此回调后，应更新广告容器的高度约束。
  */
-- (void)nativeAd:(HXNativeAd *)nativeAd didCalculateRecommendedHeight:(CGFloat)recommendedHeight;
+- (void)nativeAd:(MedproFHHXNativeAd *)nativeAd didCalculateRecommendedHeight:(CGFloat)recommendedHeight;
 
 #pragma mark - 行为激励（actReward 开启时有效）
 
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @note 此回调仅在 actReward = YES 时有效，且仅触发一次
  */
-- (void)nativeAdDidReward:(HXNativeAd *)nativeAd;
+- (void)nativeAdDidReward:(MedproFHHXNativeAd *)nativeAd;
 
 /**
  * @brief 行为激励未达标
@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 开发者可据此提示用户"还差 X 秒获得奖励"，鼓励再次点击。
  * 再次点击后浏览时长可累计。
  */
-- (void)nativeAd:(HXNativeAd *)nativeAd didFailRewardWithRemainingTime:(NSInteger)remainingTime;
+- (void)nativeAd:(MedproFHHXNativeAd *)nativeAd didFailRewardWithRemainingTime:(NSInteger)remainingTime;
 
 @end
 

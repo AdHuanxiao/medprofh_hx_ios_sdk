@@ -11,18 +11,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, HXVideoShowModel) {
-    HXVideoShowModelResize,         // 拉伸填充
-    HXVideoShowModelResizeAspect,   // 保持比例（可能有黑边）
-    HXVideoShowModelResizeFill,     // 保持比例填充（可能裁切）
+typedef NS_ENUM(NSUInteger, MedproFHHXVideoShowModel) {
+    MedproFHHXVideoShowModelResize,         // 拉伸填充
+    MedproFHHXVideoShowModelResizeAspect,   // 保持比例（可能有黑边）
+    MedproFHHXVideoShowModelResizeFill,     // 保持比例填充（可能裁切）
 };
 
-@protocol HXMediaViewDelegate;
+@protocol MedproFHHXMediaViewDelegate;
 
-@interface HXMediaView : UIView
+@interface MedproFHHXMediaView : UIView
 
 //  视频的显示模式，默认 HXVideoShowModelResizeAspect
-@property (nonatomic, assign) HXVideoShowModel showModel;
+@property (nonatomic, assign) MedproFHHXVideoShowModel showModel;
 //  声音控制视图，外部可以改变 frame。width / height = 1:1
 @property (nonatomic, strong, readonly) UIView *voiceControlView;
 //  控制视频的音量控制按钮是否展示（默认不展示）
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, HXVideoShowModel) {
 //  是否静音了
 @property (nonatomic, assign, readonly) BOOL isMuted;
 //  代理
-@property (nonatomic, weak, nullable) id<HXMediaViewDelegate> delegate;
+@property (nonatomic, weak, nullable) id<MedproFHHXMediaViewDelegate> delegate;
 
 //  恢复播放
 - (void)resume;
@@ -47,22 +47,22 @@ typedef NS_ENUM(NSUInteger, HXVideoShowModel) {
 
 @end
 
-@protocol HXMediaViewDelegate <NSObject>
+@protocol MedproFHHXMediaViewDelegate <NSObject>
 
 @optional
 
 //  准备播放
-- (void)hxMediaReady:(HXMediaView *)mediaView;
+- (void)hxMediaReady:(MedproFHHXMediaView *)mediaView;
 //  开始播放
-- (void)hxMediaStart:(HXMediaView *)mediaView;
+- (void)hxMediaStart:(MedproFHHXMediaView *)mediaView;
 //  暂停播放
-- (void)hxMediaPause:(HXMediaView *)mediaView;
+- (void)hxMediaPause:(MedproFHHXMediaView *)mediaView;
 //  恢复播放
-- (void)hxMediaResume:(HXMediaView *)mediaView;
+- (void)hxMediaResume:(MedproFHHXMediaView *)mediaView;
 //  播放错误
-- (void)hxMediaError:(HXMediaView *)mediaView error:(NSError *)error;
+- (void)hxMediaError:(MedproFHHXMediaView *)mediaView error:(NSError *)error;
 //  播放完成
-- (void)hxMediaCompleted:(HXMediaView *)mediaView;
+- (void)hxMediaCompleted:(MedproFHHXMediaView *)mediaView;
 
 @end
 

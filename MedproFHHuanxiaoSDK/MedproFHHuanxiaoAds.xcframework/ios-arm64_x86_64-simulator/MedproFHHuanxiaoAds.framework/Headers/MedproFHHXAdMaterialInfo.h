@@ -4,7 +4,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 已加载广告的不可变素材快照。缺失字符串为空字符串，缺失图片列表为空数组。
 /// 查询不会加载、展示广告或触发统计；关闭、过期后仍可读取已成功加载的快照。
-@interface HXAdMaterialInfo : NSObject <NSCopying>
+@interface MedproFHHXAdMaterialInfo : NSObject <NSCopying>
 /// 本次加载成功广告对应的响应请求标识。
 @property (nonatomic, copy, readonly) NSString *requestID;
 @property (nonatomic, copy, readonly) NSString *title;

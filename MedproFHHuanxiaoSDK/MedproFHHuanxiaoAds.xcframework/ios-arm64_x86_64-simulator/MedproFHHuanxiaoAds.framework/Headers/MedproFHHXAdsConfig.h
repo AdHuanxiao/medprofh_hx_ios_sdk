@@ -14,7 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface HXAdsConfig : NSObject <NSCopying>
+@interface MedproFHHXAdsConfig : NSObject <NSCopying>
 
 #pragma mark - 必填参数
 
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see HXPrivacyConfig
  */
-@property (nonatomic, strong) HXPrivacyConfig *privacyConfig;
+@property (nonatomic, strong) MedproFHHXPrivacyConfig *privacyConfig;
 
 /**
  * @brief 测试模式开关
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see HXAdsLogLevel
  */
-@property (nonatomic, assign) HXAdsLogLevel logLevel;
+@property (nonatomic, assign) MedproFHHXAdsLogLevel logLevel;
 
 #pragma mark - 初始化
 

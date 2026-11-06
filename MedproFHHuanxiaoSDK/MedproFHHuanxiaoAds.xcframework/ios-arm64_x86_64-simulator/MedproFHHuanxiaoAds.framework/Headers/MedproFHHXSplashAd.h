@@ -17,20 +17,20 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface HXSplashAd : NSObject <HXBidNotifiable>
+@interface MedproFHHXSplashAd : NSObject <MedproFHHXBidNotifiable>
 
 /// 加载成功后可读取的素材快照；加载前及本轮加载失败时为 nil。
 /// 被拒绝的重复加载、广告关闭或过期不会清除已成功加载的快照。
-@property (atomic, strong, readonly, nullable) HXAdMaterialInfo *materialInfo;
+@property (atomic, strong, readonly, nullable) MedproFHHXAdMaterialInfo *materialInfo;
 
 /// 服务端决定的渲染方式，仅加载成功后有效；媒体不能设置。
 /// 自渲染须先绑定素材；自动展示时请在加载成功回调内同步绑定。
-@property (nonatomic, assign, readonly) HXFullscreenAdRenderMode renderMode;
+@property (nonatomic, assign, readonly) MedproFHHXFullscreenAdRenderMode renderMode;
 
 /// 自渲染素材，仅 Custom 模式加载成功后有效。
 /// 在主线程创建内容视图并 bindWithContainer，再调用现有 show 方法。
 /// SDK 管理曝光、交互、视频和关闭；绑定本身不开始展示。
-@property (nonatomic, strong, readonly, nullable) HXFullscreenAdRenderData *renderData;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXFullscreenAdRenderData *renderData;
 
 
 #pragma mark - 属性
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @brief 代理对象
  * @discussion 用于接收广告生命周期回调
  */
-@property (nonatomic, weak, nullable) id<HXSplashAdDelegate> delegate;
+@property (nonatomic, weak, nullable) id<MedproFHHXSplashAdDelegate> delegate;
 
 /**
  * @brief 广告是否有效

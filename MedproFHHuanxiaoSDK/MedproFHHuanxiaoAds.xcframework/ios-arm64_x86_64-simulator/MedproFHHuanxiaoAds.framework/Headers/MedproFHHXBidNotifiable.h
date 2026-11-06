@@ -24,13 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
  * @constant HXBidLossReasonTimeout           1005 超时过滤
  * @constant HXBidLossReasonOther             1006 其它
  */
-typedef NS_ENUM(NSInteger, HXBidLossReason) {
-    HXBidLossReasonPriceFilter     = 1001,
-    HXBidLossReasonLowBid          = 1002,
-    HXBidLossReasonBlacklistFilter = 1003,
-    HXBidLossReasonCompeteFilter   = 1004,
-    HXBidLossReasonTimeout         = 1005,
-    HXBidLossReasonOther           = 1006,
+typedef NS_ENUM(NSInteger, MedproFHHXBidLossReason) {
+    MedproFHHXBidLossReasonPriceFilter     = 1001,
+    MedproFHHXBidLossReasonLowBid          = 1002,
+    MedproFHHXBidLossReasonBlacklistFilter = 1003,
+    MedproFHHXBidLossReasonCompeteFilter   = 1004,
+    MedproFHHXBidLossReasonTimeout         = 1005,
+    MedproFHHXBidLossReasonOther           = 1006,
 };
 
 #pragma mark - 竞价胜出者
@@ -51,18 +51,18 @@ typedef NS_ENUM(NSInteger, HXBidLossReason) {
  * JD       京东
  * OTHER    其他
  */
-extern NSString *const kHXWinBidderCSJ;
-extern NSString *const kHXWinBidderGDT;
-extern NSString *const kHXWinBidderKUAISHOU;
-extern NSString *const kHXWinBidderBAIDU;
-extern NSString *const kHXWinBidderSIGMOB;
-extern NSString *const kHXWinBidderOPPO;
-extern NSString *const kHXWinBidderVIVO;
-extern NSString *const kHXWinBidderHUAWEI;
-extern NSString *const kHXWinBidderXIAOMI;
-extern NSString *const kHXWinBidderTAKU;
-extern NSString *const kHXWinBidderJD;
-extern NSString *const kHXWinBidderOTHER;
+extern NSString *const MedproFHkHXWinBidderCSJ;
+extern NSString *const MedproFHkHXWinBidderGDT;
+extern NSString *const MedproFHkHXWinBidderKUAISHOU;
+extern NSString *const MedproFHkHXWinBidderBAIDU;
+extern NSString *const MedproFHkHXWinBidderSIGMOB;
+extern NSString *const MedproFHkHXWinBidderOPPO;
+extern NSString *const MedproFHkHXWinBidderVIVO;
+extern NSString *const MedproFHkHXWinBidderHUAWEI;
+extern NSString *const MedproFHkHXWinBidderXIAOMI;
+extern NSString *const MedproFHkHXWinBidderTAKU;
+extern NSString *const MedproFHkHXWinBidderJD;
+extern NSString *const MedproFHkHXWinBidderOTHER;
 
 #pragma mark - 竞价结果通知协议
 
@@ -76,7 +76,7 @@ extern NSString *const kHXWinBidderOTHER;
  *
  * 支持的广告类型：开屏、信息流、插屏、激励视频。
  */
-@protocol HXBidNotifiable <NSObject>
+@protocol MedproFHHXBidNotifiable <NSObject>
 
 /**
  * @brief 通知 SDK 竞价胜出
@@ -94,7 +94,7 @@ extern NSString *const kHXWinBidderOTHER;
  * @param winnerBidder 胜出方标识，参见 @c kHXWinBidder* 常量，未知可传 nil
  * @param winnerPrice  胜出方出价（分/CPM），未知传 0
  */
-- (void)sendLossNotificationWithLossReason:(HXBidLossReason)lossReason
+- (void)sendLossNotificationWithLossReason:(MedproFHHXBidLossReason)lossReason
                                winnerBidder:(nullable NSString *)winnerBidder
                                winnerPrice:(NSUInteger)winnerPrice;
 

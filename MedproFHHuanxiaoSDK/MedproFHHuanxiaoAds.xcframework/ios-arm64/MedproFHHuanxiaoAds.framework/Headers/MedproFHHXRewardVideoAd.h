@@ -15,11 +15,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HXRewardVideoAd : NSObject <HXBidNotifiable>
+@interface MedproFHHXRewardVideoAd : NSObject <MedproFHHXBidNotifiable>
 
 /// 加载成功后可读取的素材快照；加载前及本轮加载失败时为 nil。
 /// 被拒绝的重复加载、广告关闭或过期不会清除已成功加载的快照。
-@property (atomic, strong, readonly, nullable) HXAdMaterialInfo *materialInfo;
+@property (atomic, strong, readonly, nullable) MedproFHHXAdMaterialInfo *materialInfo;
 
 #pragma mark - 属性
 
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @brief 代理对象
  * @discussion 用于接收广告生命周期回调
  */
-@property (nonatomic, weak, nullable) id<HXRewardVideoAdDelegate> delegate;
+@property (nonatomic, weak, nullable) id<MedproFHHXRewardVideoAdDelegate> delegate;
 
 /**
  * @brief 广告是否有效

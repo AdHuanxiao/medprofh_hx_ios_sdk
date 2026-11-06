@@ -15,7 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface HXAdsSDK : NSObject
+@interface MedproFHHXAdsSDK : NSObject
 
 #pragma mark - 单例
 
@@ -36,13 +36,13 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion 初始化成功后可读取，未初始化时为 nil。SDK 在初始化开始时复制配置，
  * 后续修改调用方原始 HXAdsConfig 对象不会改变 SDK 内部配置。
  */
-@property (nonatomic, strong, readonly, nullable) HXAdsConfig *currentConfig;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXAdsConfig *currentConfig;
 
 /**
  * @brief SDK 初始化状态
  * @see HXAdsInitializationStatus
  */
-@property (nonatomic, assign, readonly) HXAdsInitializationStatus initializationStatus;
+@property (nonatomic, assign, readonly) MedproFHHXAdsInitializationStatus initializationStatus;
 
 /**
  * @brief 是否已成功初始化
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @warning AppID 为必填项，为空时初始化将失败并记录错误日志
  */
-- (void)initializeWithConfig:(HXAdsConfig *)config;
+- (void)initializeWithConfig:(MedproFHHXAdsConfig *)config;
 
 #pragma mark - 异步初始化
 
@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 等同于使用默认 HXAdsConfig 调用 initializeWithConfig:completion:
  */
 - (void)initializeWithAppID:(NSString *)appID
-                 completion:(nullable HXAdsInitializationCompletionHandler)completion;
+                 completion:(nullable MedproFHHXAdsInitializationCompletionHandler)completion;
 
 /**
  * @brief 异步初始化 SDK
@@ -123,8 +123,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @warning AppID 为必填项，为空时将返回错误
  */
-- (void)initializeWithConfig:(HXAdsConfig *)config
-                  completion:(nullable HXAdsInitializationCompletionHandler)completion;
+- (void)initializeWithConfig:(MedproFHHXAdsConfig *)config
+                  completion:(nullable MedproFHHXAdsInitializationCompletionHandler)completion;
 
 
 #pragma mark - 就绪队列
@@ -256,7 +256,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see HXAdsLogLevel
  */
-- (void)setLogLevel:(HXAdsLogLevel)logLevel;
+- (void)setLogLevel:(MedproFHHXAdsLogLevel)logLevel;
 
 @end
 

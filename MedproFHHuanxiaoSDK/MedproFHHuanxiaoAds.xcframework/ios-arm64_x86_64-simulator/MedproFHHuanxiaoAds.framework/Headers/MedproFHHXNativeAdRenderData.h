@@ -10,14 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class HXMediaView;
-@class HXInteractionContainerView;
-@protocol HXNativeAdCustomVideoDelegate;
+@class MedproFHHXMediaView;
+@class MedproFHHXInteractionContainerView;
+@protocol MedproFHHXNativeAdCustomVideoDelegate;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// 自渲染广告的应用信息。下载类广告应使用这些字段展示应用合规信息。
-@interface HXNativeAdAppInfo : NSObject
+@interface MedproFHHXNativeAdAppInfo : NSObject
 
 /// 应用名称
 @property (nonatomic, copy, readonly, nullable) NSString *name;
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface HXNativeAdRenderData : NSObject
+@interface MedproFHHXNativeAdRenderData : NSObject
 
 //  按钮文字
 @property (nonatomic, copy, readonly) NSString *ctaText;
@@ -82,14 +82,14 @@ NS_ASSUME_NONNULL_BEGIN
 //  应用图标URL
 @property (nonatomic, copy, readonly, nullable) NSString *appIconUrl;
 /// 应用信息。下载类广告应按监管要求展示相应信息。
-@property (nonatomic, strong, readonly, nullable) HXNativeAdAppInfo *appInfo;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXNativeAdAppInfo *appInfo;
 
 /**
  * 交互容器视图（摇一摇/扭一扭/滑动），媒体可在容器内 addSubview 添加自定义内容。
  * 将容器添加到广告视图层级后，调用 bindWithContainer:clickableViews: 时 SDK 自动启动交互监测。
  * 容器 width/height 建议 1:1，如 55x55
  */
-@property (nonatomic, strong, readonly, nullable) HXInteractionContainerView *interactionContainerView;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXInteractionContainerView *interactionContainerView;
 
 //  摇一摇的 UIImageView 视图（已废弃，请使用 interactionContainerView 替代）
 @property (nonatomic, strong, readonly, nullable) UIImageView *shakeAnimationView
@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isDownloadAd;
 //  视频播放视图，isVideoAd=YES 时有值。
 //  videoRenderMode 设为 Custom 时为 nil，请用下方 videoUrl 等字段自行播放
-@property (nonatomic, strong, readonly, nullable) HXMediaView *mediaView;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXMediaView *mediaView;
 
 #pragma mark - 视频素材（isVideoAd=YES 时有值，自定义视频模式使用）
 
@@ -131,7 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bindWithContainer:(UIView *)containerView
            clickableViews:(NSArray *)clickableViews
           customVideoView:(nullable UIView *)customVideoView
-            videoDelegate:(nullable id<HXNativeAdCustomVideoDelegate>)videoDelegate;
+            videoDelegate:(nullable id<MedproFHHXNativeAdCustomVideoDelegate>)videoDelegate;
 
 /// 添加关闭视图（该视图点击，可以关闭广告）
 - (void)addCloseTarget:(UIView *)targetView;

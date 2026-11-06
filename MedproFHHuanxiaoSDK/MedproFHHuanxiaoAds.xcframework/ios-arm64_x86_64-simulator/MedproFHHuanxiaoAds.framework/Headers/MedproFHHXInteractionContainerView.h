@@ -16,15 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * @brief 交互容器的交互类型
  */
-typedef NS_ENUM(NSUInteger, HXInteractionType) {
+typedef NS_ENUM(NSUInteger, MedproFHHXInteractionType) {
     /// 无交互（默认）
-    HXInteractionTypeNone   = 0,
+    MedproFHHXInteractionTypeNone   = 0,
     /// 摇一摇
-    HXInteractionTypeShake  = 1,
+    MedproFHHXInteractionTypeShake  = 1,
     /// 扭一扭
-    HXInteractionTypeTwist  = 2,
+    MedproFHHXInteractionTypeTwist  = 2,
     /// 滑动
-    HXInteractionTypeSwipe  = 3,
+    MedproFHHXInteractionTypeSwipe  = 3,
 };
 
 /**
@@ -43,10 +43,10 @@ typedef NS_ENUM(NSUInteger, HXInteractionType) {
  *
  * @note 容器的 width/height 为 1:1 时效果最佳
  */
-@interface HXInteractionContainerView : UIView
+@interface MedproFHHXInteractionContainerView : UIView
 
 /// 交互类型（摇一摇/扭一扭/滑动）
-@property (nonatomic, assign, readonly) HXInteractionType interactionType;
+@property (nonatomic, assign, readonly) MedproFHHXInteractionType interactionType;
 
 /// SDK 提供的默认动画指示视图（如摇一摇手机图标）
 @property (nonatomic, strong, readonly, nullable) UIView *defaultAnimationView;

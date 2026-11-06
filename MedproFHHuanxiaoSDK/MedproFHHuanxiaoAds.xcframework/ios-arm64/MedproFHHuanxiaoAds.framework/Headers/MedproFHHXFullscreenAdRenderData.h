@@ -7,19 +7,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class HXMediaView;
-@class HXInteractionContainerView;
+@class MedproFHHXMediaView;
+@class MedproFHHXInteractionContainerView;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// 服务端决定的广告渲染方式，仅加载成功后的查询结果有效。
-typedef NS_ENUM(NSInteger, HXFullscreenAdRenderMode) {
-    HXFullscreenAdRenderModeTemplate = 0,
-    HXFullscreenAdRenderModeCustom = 1,
+typedef NS_ENUM(NSInteger, MedproFHHXFullscreenAdRenderMode) {
+    MedproFHHXFullscreenAdRenderModeTemplate = 0,
+    MedproFHHXFullscreenAdRenderModeCustom = 1,
 };
 
 /// 下载类广告的应用信息快照；由 SDK 创建。
-@interface HXFullscreenAdAppInfo : NSObject
+@interface MedproFHHXFullscreenAdAppInfo : NSObject
 @property (nonatomic, copy, readonly, nullable) NSString *name;
 @property (nonatomic, copy, readonly, nullable) NSString *iconUrl;
 /// 应用大小，单位 KB。
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, HXFullscreenAdRenderMode) {
 
 /// 开屏、插屏自渲染素材及 SDK 提供的视图。数据在加载完成后保持不变。
 /// 自渲染仍须展示广告标识及下载类应用信息；通过 appInfoView 可使用 SDK 的合规信息与链接。
-@interface HXFullscreenAdRenderData : NSObject
+@interface MedproFHHXFullscreenAdRenderData : NSObject
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSString *desc;
 @property (nonatomic, copy, readonly) NSString *ctaText;
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, HXFullscreenAdRenderMode) {
 @property (nonatomic, copy, readonly, nullable) NSString *iconUrl;
 @property (nonatomic, strong, readonly, nullable) UIImage *appIcon;
 @property (nonatomic, copy, readonly, nullable) NSString *appIconUrl;
-@property (nonatomic, strong, readonly, nullable) HXFullscreenAdAppInfo *appInfo;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXFullscreenAdAppInfo *appInfo;
 @property (nonatomic, assign, readonly) BOOL isDownloadAd;
 /// adLabelImage 无法生成时的文字兜底；两者二选一，不要重复叠加。
 @property (nonatomic, copy, readonly) NSString *adLabel;
@@ -70,9 +70,9 @@ typedef NS_ENUM(NSInteger, HXFullscreenAdRenderMode) {
 /// 视频时长，单位秒。
 @property (nonatomic, assign, readonly) NSTimeInterval videoDuration;
 /// 视频广告使用 SDK 播放组件。将它放入容器后再绑定，展示时由 SDK 管理播放和统计。
-@property (nonatomic, strong, readonly, nullable) HXMediaView *mediaView;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXMediaView *mediaView;
 /// 摇一摇/扭一扭/滑动提示容器。可自定义其内容；绑定阶段不会开始运动检测或提示动画。
-@property (nonatomic, strong, readonly, nullable) HXInteractionContainerView *interactionContainerView;
+@property (nonatomic, strong, readonly, nullable) MedproFHHXInteractionContainerView *interactionContainerView;
 /// SDK 关闭/跳过按钮。媒体可设置外观和布局；标题、可用状态及关闭时机由 SDK 管理。
 @property (nonatomic, strong, readonly) UIButton *closeButton;
 /// SDK 广告标识与应用信息视图，包含权限、隐私等链接。请加入广告内容容器并完整展示。

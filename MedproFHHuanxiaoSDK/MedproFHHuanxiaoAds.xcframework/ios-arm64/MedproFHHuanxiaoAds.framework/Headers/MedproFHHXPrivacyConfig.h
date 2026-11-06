@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface HXPrivacyConfig : NSObject <NSCopying>
+@interface MedproFHHXPrivacyConfig : NSObject <NSCopying>
 
 #pragma mark - 隐私开关
 
